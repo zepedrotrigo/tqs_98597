@@ -1,2 +1,4 @@
 *.pdf
 target/
+.idea/
+.vscode/
