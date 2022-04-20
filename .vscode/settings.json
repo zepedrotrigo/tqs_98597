@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.sourcePaths": [
+        "lab1/ex1/demo",
+        "my-app"
+    ]
+}
