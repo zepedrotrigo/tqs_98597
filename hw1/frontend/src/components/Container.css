@@ -6,7 +6,6 @@
 
 .container {
 	width: 80%;
-    margin-left: 10%;
 	align-self: center;
 	text-align: center;
 	margin-bottom: 4rem;
@@ -15,16 +14,12 @@
 
 	background-color: #F2F2F2;
 	border: 1px solid rgba(var(--b6a,219,219,219),1);
-	border-radius: 15px;
+	border-radius: 10px;
 }
 
-.container.bg-margin {
-	width: 60%;
-	margin-left: 20%;
-	margin-right: 20%;
-}
-
-.container.bg-padding {
-	padding-left: 5rem;
-	padding-right: 5rem;
+.container.sidebar {
+	margin-left: 0%;
+	margin-top: 0%;
+	min-height: 90vh;
+	border-radius: 5px;
 }
