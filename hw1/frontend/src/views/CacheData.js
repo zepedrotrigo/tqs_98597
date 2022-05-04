@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, Button, MenuItem } from '@mui/material';
+import { Select, Button, Card } from '@mui/material';
 import '../App.css';
 import Container from '../components/Container';
 import SideBar from '../components/Sidebar';
@@ -9,29 +9,26 @@ class CacheData extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            apiResponded: false,
-            json: null,
-            selectedIndex: 1,
+            cacheData: null,
         }
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/regions/')
+        fetch('http://localhost:8080/v1/cache')
             .then((response) => response.json())
             .then((data) => {
-                this.setState({ apiResponded: true, json: data })
+                this.setState({ cacheData: data })
             })
     }
 
-    populateRegionSelector() {
-        let values = [];
-
-        Array.from(this.state.json.data.entries()).map((entry) => {
-            const [_, v] = entry;
-            values.push(<MenuItem value={v.iso}>{v.name}</MenuItem>);
-        })
-
-        return values;
+    renderCards() {
+        return (
+            <div className="grouped-cards">
+                <Card variant="outlined"><h5>Requests:</h5><p>{this.state.cacheData.requests}</p></Card>
+                <Card variant="outlined"><h5>Hits:</h5><p>{this.state.cacheData.hits}</p></Card>
+                <Card variant="outlined"><h5>Misses:</h5><p>{this.state.cacheData.misses}</p></Card>
+            </div>
+        )
     }
 
     render() {
@@ -43,11 +40,8 @@ class CacheData extends React.Component {
                     </Container>
                     <div>
                         <Container>
-                            <h3>Select Country:</h3>
-                            <Select defaultValue={'CHN'} label="China">
-                                {this.state.apiResponded === true && this.populateRegionSelector()}
-                            </Select>
-                            <Button variant="contained">Search!</Button>
+                            <h3>Cache Stats:</h3>
+                            {this.state.cacheData !== null && this.renderCards()}
                         </Container>
                     </div>
                 </div>

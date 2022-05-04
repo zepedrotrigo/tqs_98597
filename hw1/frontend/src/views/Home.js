@@ -23,7 +23,6 @@ class Home extends React.Component {
     }
 
     fetchData() {
-        console.log("LINE 28:" + this.state.datePicker);
         fetch(`http://localhost:8080?date=${this.state.datePicker}`)
             .then((response) => response.json())
             .then((data) => {

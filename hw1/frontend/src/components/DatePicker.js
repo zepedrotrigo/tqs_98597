@@ -15,7 +15,7 @@ export default class BasicDatePicker extends React.Component {
     render() {
         return (<LocalizationProvider dateAdapter={AdapterMoment}>
             <DatePicker value={this.state.datePicker} onChange={newValue => {
-                this.setState({ datePicker: newValue.toISOString().split('T')[0] });
+                this.setState({ datePicker: (newValue).toISOString().split('T')[0] });
                 this.props.action(newValue);
             }} renderInput={params => <TextField {...params} />} />
         </LocalizationProvider>);
