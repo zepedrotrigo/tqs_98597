@@ -63,7 +63,7 @@ class RegionData extends React.Component {
     renderCountryStats() {
         return (
             <div className="grouped-cards">
-                <Card variant="outlined"><h5>Population:</h5><p>{this.state.countryStats.population}</p></Card>
+                <Card variant="outlined"><h5>Population:</h5><p id="country-population-val">{this.state.countryStats.population}</p></Card>
                 <Card variant="outlined"><h5>Total Cases:</h5><p>{this.state.countryStats.cases.total}</p></Card>
                 <Card variant="outlined"><h5>New Cases:</h5><p>{this.state.countryStats.cases.new}</p></Card>
                 <Card variant="outlined"><h5>Active Cases:</h5><p>{this.state.countryStats.cases.active}</p></Card>
@@ -85,11 +85,11 @@ class RegionData extends React.Component {
                     </Container>
                     <div>
                         <Container>
-                            <Select className="input-size" onChange={this._handleChangeSelectedCountry} defaultValue={'Portugal'} label="Portugal">
+                            <Select id="country-select" className="input-size" onChange={this._handleChangeSelectedCountry} defaultValue={'Portugal'} label="Portugal">
                                 {this.state.countriesList !== null && this.populateCountriesSelector()}
                             </Select>
                             <DatePicker className="input-size" action={this.DatePickerHandler}></DatePicker>
-                            <Button className="spacing" variant="contained" onClick={this.getCountryStats.bind(this)}>Search!</Button>
+                            <Button id="search-btn" className="spacing" variant="contained" onClick={this.getCountryStats.bind(this)}>Search!</Button>
                         </Container>
                         <Container>
                             {this.state.countryStats !== null && this.renderCountryStats()}

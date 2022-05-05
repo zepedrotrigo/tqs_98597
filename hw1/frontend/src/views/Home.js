@@ -39,7 +39,7 @@ class Home extends React.Component {
     renderCards() {
         return (
             <div className="grouped-cards">
-                <Card variant="outlined"><h5>Last updated:</h5><p>{this.state.json.data.last_update}</p></Card>
+                <Card variant="outlined"><h5>Last updated:</h5><p id="last-updated-text">{this.state.json.data.last_update}</p></Card>
                 <Card variant="outlined"><h5>Total Confirmed:</h5><p>{this.state.json.data.confirmed}</p></Card>
                 <Card variant="outlined"><h5>Total Deaths:</h5><p>{this.state.json.data.deaths}</p></Card>
                 <Card variant="outlined"><h5>Total Recovered Cases:</h5><p>{this.state.json.data.recovered}</p></Card>
@@ -62,7 +62,7 @@ class Home extends React.Component {
                     <div>
                         <Container>
                         <DatePicker action={this.DatePickerHandler} className="input-size"></DatePicker>
-                            <Button className="spacing" variant="contained" onClick={this.fetchData.bind(this)}>Search!</Button>
+                            <Button id="search-btn" className="spacing" variant="contained" onClick={this.fetchData.bind(this)}>Search!</Button>
                         </Container>
                         <Container>
                             {this.state.json !== null && this.renderCards()}

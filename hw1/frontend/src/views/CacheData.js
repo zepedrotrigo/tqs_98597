@@ -24,7 +24,7 @@ class CacheData extends React.Component {
     renderCards() {
         return (
             <div className="grouped-cards">
-                <Card variant="outlined"><h5>Requests:</h5><p>{this.state.cacheData.requests}</p></Card>
+                <Card variant="outlined"><h5>Requests:</h5><p id="cache-requests-val">{this.state.cacheData.requests}</p></Card>
                 <Card variant="outlined"><h5>Hits:</h5><p>{this.state.cacheData.hits}</p></Card>
                 <Card variant="outlined"><h5>Misses:</h5><p>{this.state.cacheData.misses}</p></Card>
             </div>

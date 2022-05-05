@@ -12,19 +12,19 @@ function SideBar() {
                 <Link to="/" style={{ color: "black", textDecoration: 'none' }}>
                     <ListItemButton>
                         <ListItemIcon className="test"><PublicIcon /></ListItemIcon>
-                        <ListItemText primary="World Data" />
+                        <ListItemText primary="World Data" id="side-bar-opt-0"/>
                     </ListItemButton>
                 </Link>
                 <Link to="/region" style={{ color: "black", textDecoration: 'none' }}>
                     <ListItemButton>
                         <ListItemIcon><LocationOnIcon /></ListItemIcon>
-                        <ListItemText primary="Regional Data" />
+                        <ListItemText primary="Regional Data" id="side-bar-opt-1" />
                     </ListItemButton>
                 </Link>
                 <Link to="/cache" style={{ color: "black", textDecoration: 'none' }}>
                     <ListItemButton>
                         <ListItemIcon><CachedIcon /></ListItemIcon>
-                        <ListItemText primary="Cache Data" />
+                        <ListItemText primary="Cache Data" id="side-bar-opt-2"/>
                     </ListItemButton>
                 </Link>
             </List>
