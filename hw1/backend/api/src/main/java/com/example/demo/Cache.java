@@ -67,7 +67,11 @@ public class Cache {
         cache.clear();
     }
 
-    private void freeFromCache(long hash, int time) {
+    public int size() {
+        return cache.size();
+    }
+
+    public void freeFromCache(long hash, int time) {
         int timeInMs = time * 60 * 1000; // min to ms
 
         new java.util.Timer().schedule(
