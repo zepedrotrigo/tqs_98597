@@ -14,6 +14,10 @@ class Controller {
 
 	Cache cache = new Cache();
 
+	public Controller() {
+		
+	}
+
 	@GetMapping("/")
 	@ResponseBody
 	String totalReport(@RequestParam(required = false) Optional<String> date) throws IOException, InterruptedException {
