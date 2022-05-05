@@ -65,4 +65,54 @@ public class ControllerTests {
                 .andExpect(jsonPath("$.results").isNumber())
                 .andExpect(jsonPath("$.response").isNotEmpty());
     }
+
+    @Test
+    public void testGetCountryStats() throws Exception {
+        String date = "2022-04-04";
+        String country = "Portugal";
+
+        mvc.perform(get("/v1/country_stats")
+                .param("country", country)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.errors").isEmpty())
+                .andExpect(jsonPath("$.response").isNotEmpty());
+
+        mvc.perform(get("/v1/country_stats")
+                .param("country", country)
+                .param("date", date)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.errors").isEmpty())
+                .andExpect(jsonPath("$.response").isNotEmpty());
+    }
+
+    @Test
+    public void testGetCountryStatsInvalidParams() throws Exception {
+        String date = "20220404";
+        String country = "Portugala";
+
+        mvc.perform(get("/v1/country_stats")
+                .param("country", country)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.response").isEmpty());
+
+        mvc.perform(get("/v1/country_stats")
+                .param("country", country)
+                .param("date", date)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.errors.day", is("The Day field must contain a valid date: YYYY-MM-DD.")));
+
+    }
+
+    @Test
+    public void testGetCacheStats() throws Exception {
+        mvc.perform(get("/v1/cache")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.hits").isNumber())
+                .andExpect(jsonPath("$.misses").isNumber())
+                .andExpect(jsonPath("$.requests").isNumber());
+    }
 }
