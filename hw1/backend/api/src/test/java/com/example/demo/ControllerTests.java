@@ -3,17 +3,24 @@ package com.example.demo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.GreaterThan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.hamcrest.core.IsNot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 
 @WebMvcTest(Controller.class)
 public class ControllerTests {
@@ -50,10 +57,12 @@ public class ControllerTests {
                 .andExpect(jsonPath("$.error.date[0]", is("The date does not match the format Y-m-d.")));
     }
 
-    /*
-     * @Test
-     * void totalReport() {
-     * 
-     * }
-     */
+    @Test
+    public void testGetCountriesList() throws Exception {
+        mvc.perform(get("/v1/countries_list")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.results").isNumber())
+                .andExpect(jsonPath("$.response").isNotEmpty());
+    }
 }
